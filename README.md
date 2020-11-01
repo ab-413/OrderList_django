@@ -1,2 +1,3 @@
-# Orders
- SImple order list for my hobby (Lasercutting)
+# OrdersList
+Simple order list for my hobby (Lasercutting)
+Django
