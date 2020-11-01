@@ -8,15 +8,15 @@ $(document).ready(function(){
     //     success:function(data){
     //       $('#addform')[0].reset();
     //       $('#orderAddModal').modal('hide');
-    //       $('#content').load("engine/showorders.php");            
+    //       $('#content').load("orders/showorders.html");            
     //     }
     //   });
     // });
 
-    // $('#content').load("engine/showorders.php");
+    // $('#content').load("showorders.html");
 
     // $('#info').click(function(){
-    //   $('#content').load("engine/showorders.php");
+    //   $('#content').load("showorders.html");
     // });
 
     $('#refresh').click(function(){

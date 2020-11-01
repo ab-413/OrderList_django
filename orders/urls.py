@@ -3,8 +3,8 @@ from . import views
 
 app_name = 'orders'
 urlpatterns = [
-    path('', views.IndexView.as_view(), name='index'),
+    path('', views.index, name='index'),
     path('<int:pk>/', views.DetailView.as_view(), name='detail'),
-    path('all/', views.AllView.as_view(), name='all'),
-    path('add/', views.add_order, name='add'),
+    path('all/', views.all_view, name='all'),
+    # path('add/', views.add_order, name='add'),
 ]
