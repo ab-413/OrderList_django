@@ -27,46 +27,20 @@
         <div class="container-fluid btn-group-vertical btn-group-lg">
           <button id="btn_addorder" class="btn btn-success btn-lg btn-block" data-toggle="modal"
             data-target="#orderAddModal">Add order</button>
-          <button id="tasks" class="btn btn-light btn-lg btn-block">All orders</button>
+          <button id="customers" class="btn btn-light btn-lg btn-block">Customers</button>
+          <button id="allorders" class="btn btn-light btn-lg btn-block">All orders</button>
           <button id="refresh" class="btn btn-light btn-lg btn-block">Refresh</button>
         </div>
       </div>
 
       <div class="col-md-10" id="content">
-        {% if all_orders_list %}
-        <table class="table table-striped table-hover table-bordered rounded">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">№</th>
-              <th scope="col">Order</th>
-              <th scope="col">Customer</th>
-              <th scope="col">Status</th>
-              <th scope="col">Contacts</th>
-              <th scope="col">Deadline</th>
-              <th scope="col">Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for order in all_orders_list %}
-            <th scope="row">{{ order.id }}</th>
-            <td><a href="{% url 'orders:detail' order.id %}">{{ order.order_name }}</a></td>
-            <td>{{ order.customer }}</td>
-            <td>{{ order.status }}</td>
-            <td>{{ order.phone_number }}</td>
-            <td>{{ order.deadline_data }}</td>
-            <td>{{ order.price }}</td>
-            {% endfor %}
-            </tr>
-          </tbody>
-        </table>
-        {% else %}
-        <p>No orders are available.</p>
-        {% endif %}
+        {% block content %}
+        {% endblock %}
       </div>
     </div>
   </div>
 
-  <div class="modal fade" id="orderAddModal" tabindex="-1" role="dialog" aria-labelledby="ModalTitle"
+  <!-- <div class="modal fade" id="orderAddModal" tabindex="-1" role="dialog" aria-labelledby="ModalTitle"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
@@ -81,12 +55,12 @@
           {% endblock %}
         </div>
         <div class="modal-footer">
-          <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-          <!-- <button type="submit" id="add" class="btn btn-primary" name="submit">Add</button> -->
+           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 
+           <button type="submit" id="add" class="btn btn-primary" name="submit">Add</button> 
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <script src="{% static "js/methods.js" %}"></script>
 
 </body>

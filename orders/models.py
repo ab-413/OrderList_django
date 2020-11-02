@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+import datetime
 
 class Order(models.Model):
     
@@ -26,4 +27,9 @@ class Order(models.Model):
         return self.order_name
 
     def days_left(self):       
-        return self.deadline_date - self.add_date.date()
+        return self.deadline_date - timezone.now().date()
+
+
+# class Customer(models.Model):
+#     name
+#     phome

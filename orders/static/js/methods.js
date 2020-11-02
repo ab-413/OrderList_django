@@ -19,12 +19,11 @@ $(document).ready(function(){
     //   $('#content').load("showorders.html");
     // });
 
+    // $('#allorders').click(function(){
+    //   location.loa
+    // });
+
     $('#refresh').click(function(){
       location.reload();
     });
-  });
-  $('#orderdeadline').datepicker({
-    format: 'yyyy/mm/dd',
-    language: 'ru',
-    todayHighlight: true
   });
