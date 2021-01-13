@@ -2,8 +2,17 @@ from django.db import models
 from django.utils import timezone
 import datetime
 
+
+class Customer(models.Model):
+    name = models.CharField(max_length=100)
+    phone = models.CharField(max_length=20)
+    order_count = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.name
+
+
 class Order(models.Model):
-    
     NEW = 'N'
     INPROGRESS = 'IP'
     LAYOUTREADY = 'LR'
@@ -15,21 +24,16 @@ class Order(models.Model):
         (DONE, 'Done'),
     ]
 
-    order_name = models.CharField(max_length=100)
-    customer = models.CharField(max_length=50)
-    phone_number = models.CharField(max_length=20)
-    status = models.CharField(max_length=15, choices=ORDER_STATUSES, default=NEW)
+    name = models.CharField(max_length=100)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    status = models.CharField(
+        max_length=15, choices=ORDER_STATUSES, default=NEW)
     add_date = models.DateTimeField(auto_now_add=True, editable=False)
     deadline_date = models.DateField('Deadline')
     price = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.order_name
+        return self.name
 
-    def days_left(self):       
+    def days_left(self):
         return self.deadline_date - timezone.now().date()
-
-
-# class Customer(models.Model):
-#     name
-#     phome
