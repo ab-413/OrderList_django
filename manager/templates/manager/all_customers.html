@@ -12,12 +12,13 @@
   </thead>
   <tbody>
     {% for customer in all_customer_list %}
-    <th scope="row">{{ customer.id }}</th>    
-    <td>{{ customer.name }}</td>
-    <td>{{ customer.phone }}</td>
-    <td>{{ customer.order_count }}</td>
-    {% endfor %}
+    <tr>
+      <th scope="row">{{ customer.id }}</th>    
+      <td>{{ customer.name }}</td>
+      <td>{{ customer.phone }}</td>
+      <td>{{ customer.order_count }}</td>    
     </tr>
+    {% endfor %}
   </tbody>
 </table>
 {% else %}

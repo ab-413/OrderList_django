@@ -11,17 +11,15 @@ $(document).ready(function(){
     //       $('#content').load("orders/showorders.html");            
     //     }
     //   });
-    // });
+    // });  
 
-    // $('#content').load("showorders.html");
+    $('#customers').click(function(){
+      location.href = '/allcustomers/';
+    });
 
-    // $('#info').click(function(){
-    //   $('#content').load("showorders.html");
-    // });
-
-    // $('#allorders').click(function(){
-    //   location.loa
-    // });
+    $('#allorders').click(function(){
+      location.href = '/allorders/';
+    });
 
     $('#refresh').click(function(){
       location.reload();
