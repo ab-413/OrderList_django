@@ -1,0 +1,26 @@
+{% extends "manager/base.html" %}
+{% block content %}
+{% if all_customer_list %}
+<table class="table table-striped table-hover table-bordered rounded">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">№</th>
+      <th scope="col">Name</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Orsers</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for customer in all_customer_list %}
+    <th scope="row">{{ customer.id }}</th>    
+    <td>{{ customer.name }}</td>
+    <td>{{ customer.phone }}</td>
+    <td>{{ customer.order_count }}</td>
+    {% endfor %}
+    </tr>
+  </tbody>
+</table>
+{% else %}
+<p>No customers are available.</p>
+{% endif %}
+{% endblock %}

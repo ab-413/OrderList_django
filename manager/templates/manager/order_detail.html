@@ -1,0 +1,10 @@
+{% extends "manager/base.html" %}
+{% block content %}
+<p>{{ order.name }}</p>
+<p>{{ order.customer }}</p>
+<p>{{ order.customer.phone }}</p>
+<p>{{ order.status }}</p>
+<p>{{ order.add_date }}</p>
+<p>{{ order.deadline_date }}</p>
+<p>{{ order.price }}</p>
+{% endblock %}
