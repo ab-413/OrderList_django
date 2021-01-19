@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Count
 from django.utils import timezone
 import datetime
 
@@ -6,15 +7,11 @@ import datetime
 class Customer(models.Model):
     name = models.CharField(max_length=100)
     phone = models.CharField(max_length=20)
-    order_count = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name
 
-    # def order_count():
-    #     return 
 
-    
 class Order(models.Model):
     NEW = 'N'
     INPROGRESS = 'IP'
@@ -28,6 +25,7 @@ class Order(models.Model):
     ]
 
     name = models.CharField(max_length=100)
+    desc = models.TextField('Description')
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     status = models.CharField(
         max_length=15, choices=ORDER_STATUSES, default=NEW)

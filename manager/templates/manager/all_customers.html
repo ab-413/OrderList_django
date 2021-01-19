@@ -14,7 +14,7 @@
     {% for customer in all_customer_list %}
     <tr>
       <th scope="row">{{ customer.id }}</th>    
-      <td>{{ customer.name }}</td>
+      <td><a href="{% url 'manager:customer_detail' customer.id %}">{{ customer.name }}</a></td>
       <td>{{ customer.phone }}</td>
       <td>{{ customer.order_count }}</td>    
     </tr>

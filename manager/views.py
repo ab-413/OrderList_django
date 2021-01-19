@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
 from django.views.generic import FormView
 from django.utils import timezone
@@ -37,17 +37,19 @@ class CustomerDetailView(generic.DetailView):
     template_name = 'manager/customer_detail.html'
 
 
-# class EditView(generic.TemplateView):
+def addorder(request):
+    error = ''
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('manager:index')
+        else:
+            error = 'Form error'
 
-
-class AddOrder(FormView):
-    form_class = OrderForm
-    success_url = reverse_lazy('order_detail')
-    template_name = 'manager/add_form.html'
-
-
-# def add_order(request):
-#     new = Order(order_name=request.POST['ordername'], customer=request.POST['ordercustomer'],
-#                 phone_number=request.POST['ordercustomercontact'], deadline_date=request.POST['orderdeadline'], price=request.POST['orderprice'])
-#     new.save()
-#     return HttpResponseRedirect(reverse('orders:detail', args=(new.id,)))
+    form = OrderForm()
+    context = {
+        'form': form,
+        'error': error
+    }
+    return render(request, 'manager/add_form.html', context)
