@@ -1,4 +1,4 @@
-venv
+venv/
 .idea
 crm/migrations/
 !crm/migrations/__init__.py
