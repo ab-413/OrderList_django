@@ -1,6 +1,6 @@
-{% extends "manager/base.html" %}
+{% extends "crm/base.html" %}
 {% block content %}
-{% if latest_orders_list %}
+{% if all_orders_list %}
 <table class="table table-striped table-hover table-bordered rounded">
   <thead class="thead-dark">
     <tr>
@@ -14,7 +14,7 @@
     </tr>
   </thead>
   <tbody>
-    {% for order in latest_orders_list %}
+    {% for order in all_orders_list %}
     <tr>
       <th scope="row">{{ order.id }}</th>
       <td><a href="{% url 'manager:order_detail' order.id %}">{{ order.name }}</a></td>
@@ -25,6 +25,7 @@
       <td>{{ order.price }}</td>    
     </tr>
     {% endfor %}
+    </tr>
   </tbody>
 </table>
 {% else %}
