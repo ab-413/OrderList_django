@@ -15,18 +15,16 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-5p_v7w1y$u54f1p=8d@u11fpy-&1n^e^#6c-6cg!-c7%262jy7'
+SECRET_KEY = 'verysecret'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -39,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crm',
     'crispy_forms',
-    'tempus_dominus'
+    'bootstrap_modal_forms',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -72,7 +71,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'laser.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
@@ -82,7 +80,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -102,11 +99,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-ru'
 
 TIME_ZONE = 'Asia/Yakutsk'
 
@@ -115,6 +111,8 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+# DATE_INPUT_FORMATS = ['%d-%m-%Y']
 
 
 # Static files (CSS, JavaScript, Images)
@@ -126,3 +124,13 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Rest framework settings
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}

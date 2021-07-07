@@ -7,14 +7,14 @@
       <th scope="col">№</th>
       <th scope="col">Name</th>
       <th scope="col">Phone</th>
-      <th scope="col">Orsers</th>
+      <th scope="col">Orders</th>
     </tr>
   </thead>
   <tbody>
     {% for customer in all_customer_list %}
     <tr>
       <th scope="row">{{ customer.id }}</th>    
-      <td><a href="{% url 'manager:customer_detail' customer.id %}">{{ customer.name }}</a></td>
+      <td><a href="{% url 'crm:customer_detail' customer.id %}">{{ customer.name }}</a></td>
       <td>{{ customer.phone }}</td>
       <td>{{ customer.order_count }}</td>    
     </tr>

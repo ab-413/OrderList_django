@@ -1,10 +1,35 @@
-{% extends "crm/base.html" %}
 {% block content %}
-<p>{{ order.name }}</p>
-<p>{{ order.customer }}</p>
-<p>{{ order.customer.phone }}</p>
-<p>{{ order.status }}</p>
-<p>{{ order.add_date }}</p>
-<p>{{ order.deadline_date }}</p>
-<p>{{ order.price }}</p>
+    <div class="modal fade" tabindex="-1" role="dialog" id="modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+    <div class="modal-header">
+        <h3 class="modal-title">Order details</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="modal-body">
+        <div class="">
+            {{ order.name }}
+        </div>
+        <div class="">
+            {{ order.customer }}
+        </div>
+        <div class="">
+            {{ order.status }}
+        </div>
+        <div class="">
+            {{ order.deadline_date }}
+        </div>
+        <div class="">
+            {{ order.price }}
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
 {% endblock %}
