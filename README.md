@@ -1,3 +1,3 @@
 # LaserCRM
-Trying to write CRM for my hobby (Lasercutting)
+Trying to write simple CRM for my hobby (Lasercutting)
 Django
