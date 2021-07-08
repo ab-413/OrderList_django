@@ -12,6 +12,18 @@ $(document).ready(function(){
         formURL: '/addcustomer/'
     });
 
+    $(".customer-detail").each(function () {
+        $(this).modalForm({formURL: $(this).data("form-url")});
+    });
+
+    $(".customer-edit").each(function () {
+        $(this).modalForm({formURL: $(this).data("form-url")});
+    });
+
+    $(".customer-delete").each(function () {
+        $(this).modalForm({formURL: $(this).data("form-url"), isDeleteForm: true});
+    });
+
     $(".order-detail").each(function () {
         $(this).modalForm({formURL: $(this).data("form-url")});
     });
@@ -37,10 +49,4 @@ $(document).ready(function(){
     });
 
     $('.datepicker').datepicker();
-
-    $(".statuses").change(function(){
-        $.ajax({url: "update_status/" + $(this).data(), success: function(result){
-            console.log(result);
-        }});
-    });
 });
