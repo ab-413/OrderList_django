@@ -1,6 +1,4 @@
-from django.http import Http404
-from django.shortcuts import render, get_object_or_404, redirect
-from django.views import generic
+from django.shortcuts import render
 from django.utils import timezone
 from .models import Order, Customer
 from .forms import OrderForm, CustomerForm
@@ -24,9 +22,9 @@ class OrdersViewSet(viewsets.ModelViewSet):
 
 
 def index(request):
-    lastest_orders_list = Order.objects.filter(
+    latest_orders_list = Order.objects.filter(
         add_date__lte=timezone.now()).order_by('-add_date')[:10]
-    context = {'latest_orders_list': lastest_orders_list}
+    context = {'latest_orders_list': latest_orders_list}
     return render(request, 'crm/order_last.html', context)
 
 
@@ -42,33 +40,31 @@ def all_customers(request):
     return render(request, 'crm/all_customers.html', context)
 
 
-def update_status(request, id):
-    order = get_object_or_404(Order, pk=id)
-    status = request.GET.get(Order.status)
-    if status:
-        order.status = status
-        order.save()
-    else:
-        raise Http404
-    context = {'id': order.id, 'status': order.status}
-    return render(request, 'crm/all_orders.html', context)
-
-
-def delete_order(request, pk):
-    Order.objects.filter(id=pk).delete()
-    return render(request, 'crm/all_orders.html')
-
-
-class CustomerDetailView(generic.DetailView):
-    model = Customer
-    template_name = 'crm/customer_detail.html'
-
-
 class CustomerAddView(BSModalCreateView):
     template_name = 'crm/add_customer.html'
     form_class = CustomerForm
     success_message = 'Success: Customer was added.'
     success_url = reverse_lazy('crm:index')
+
+
+class CustomerEditView(BSModalUpdateView):
+    model = Customer
+    template_name = 'crm/customer_edit.html'
+    form_class = CustomerForm
+    success_message = 'Success: Customer was edited.'
+    success_url = reverse_lazy('crm:all_customers')
+
+
+class CustomerDetailView(BSModalReadView):
+    model = Customer
+    template_name = 'crm/customer_detail.html'
+
+
+class CustomerDeleteView(BSModalDeleteView):
+    model = Customer
+    template_name = 'crm/customer_delete.html'
+    success_message = 'Success: Customer was deleted.'
+    success_url = reverse_lazy('crm:all_customers')
 
 
 class OrderAddView(BSModalCreateView):

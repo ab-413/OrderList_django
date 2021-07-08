@@ -36,3 +36,4 @@ class Order(models.Model):
 
     def days_left(self):
         return self.deadline_date - timezone.now().date()
+
