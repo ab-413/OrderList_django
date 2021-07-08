@@ -1,27 +1,43 @@
 {% extends "crm/base.html" %}
 {% block content %}
-{% if all_customer_list %}
-<table class="table table-striped table-hover table-bordered rounded">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">№</th>
-      <th scope="col">Name</th>
-      <th scope="col">Phone</th>
-      <th scope="col">Orders</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for customer in all_customer_list %}
-    <tr>
-      <th scope="row">{{ customer.id }}</th>    
-      <td><a href="{% url 'crm:customer_detail' customer.id %}">{{ customer.name }}</a></td>
-      <td>{{ customer.phone }}</td>
-      <td>{{ customer.order_count }}</td>    
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-{% else %}
-<p>No customers are available.</p>
-{% endif %}
+    {% if all_customer_list %}
+        <table class="table table-striped table-hover table-bordered rounded">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">№</th>
+                <th scope="col">Name</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Orders</th>
+                <th scope="col">Edit</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for customer in all_customer_list %}
+                <tr>
+                    <th scope="row">{{ customer.id }}</th>
+                    <td>{{ customer.name }}</td>
+                    <td>{{ customer.phone }}</td>
+                    {% load custom_tags %}
+                    <td>{% order_count customer.id %}</td>
+                    <td>
+                        <button type="button" class="btn btn-outline-success customer-detail"
+                                data-form-url="{% url 'crm:customer_detail' customer.pk %}">
+                            <i class="bi bi-list"></i>
+                        </button>
+                        <button type="button" class="btn btn-outline-primary customer-edit"
+                                data-form-url="{% url 'crm:edit_customer' customer.pk %}">
+                            <i class="bi bi-brush"></i>
+                        </button>
+                        <button type="button" class="btn btn-outline-danger customer-delete"
+                                data-form-url="{% url 'crm:delete_customer' customer.pk %}">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No customers are available.</p>
+    {% endif %}
 {% endblock %}

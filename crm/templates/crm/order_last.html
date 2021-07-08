@@ -18,19 +18,9 @@
             {% for order in latest_orders_list %}
                 <tr>
                     <th scope="row">{{ order.id }}</th>
-                    <td><a href="{% url 'crm:order_detail' order.id %}">{{ order.name }}</a></td>
+                    <td>{{ order.name }}</td>
                     <td>{{ order.customer }}</td>
-                    <td>
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownStatus"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {{ order.status.title }}
-                        </button>
-                        <div class="dropdown-menu statuses" aria-labelledby="dropdownStatus">
-                            {% for k, v in order.ORDER_STATUSES %}
-                                <button class="dropdown-item" type="button" value="{{ k }}">{{ v }}</button>
-                            {% endfor %}
-                        </div>
-                    </td>
+                    <td>{{ order.status.title }}</td>
                     <td>{{ order.customer.phone }}</td>
                     <td>{{ order.deadline_date }}</td>
                     <td>{{ order.price }}</td>
