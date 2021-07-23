@@ -5,7 +5,7 @@ from rest_framework import serializers
 class CustomerSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Customer
-        fields = ['id', 'name', 'phone']
+        fields = ['id', 'name', 'phone', 'insta']
 
 
 class OrderSerializer(serializers.HyperlinkedModelSerializer):
