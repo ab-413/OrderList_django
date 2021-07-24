@@ -19,11 +19,11 @@ jobs:
     - name: Git clone our repo
       uses: actions/checkout@v1
       
-    - name: Configure Django app
-      run : |
-        python3 manage.py makemigrations /
-        && python3 manage.py migrate /
-        && python3 manage.py collectstatic        
+#     - name: Configure Django app
+#       run : |
+#         python3 manage.py makemigrations /
+#         && python3 manage.py migrate /
+#         && python3 manage.py collectstatic        
 
     - name: Create ZIP deployment package
       run : zip -r ${{ env.DEPLOY_PACKAGE_NAME }} ./ -x *.git*
