@@ -1,8 +1,8 @@
 name: CI-CD-Pipeline-to-AWS-ElasticBeastalk
 env:
   EB_PACKAGE_S3_BUCKET_NAME : "ol-crm-bucket"
-  EB_APPLICATION_NAME       : "MyCRM"
-  EB_ENVIRONMENT_NAME       : "Mycrm-env"
+  EB_APPLICATION_NAME       : "my-django-app"
+  EB_ENVIRONMENT_NAME       : "my-django-app-env"
   DEPLOY_PACKAGE_NAME       : "django_app_${{ github.sha }}.zip"
   AWS_REGION_NAME           : "us-east-2"
 
@@ -18,6 +18,12 @@ jobs:
     steps:
     - name: Git clone our repo
       uses: actions/checkout@v1
+      
+    - name: Configure Django app
+      run : |
+        python3 manage.py makemigrations /
+        && python3 manage.py migrate /
+        && python3 manage.py collectstatic        
 
     - name: Create ZIP deployment package
       run : zip -r ${{ env.DEPLOY_PACKAGE_NAME }} ./ -x *.git*
